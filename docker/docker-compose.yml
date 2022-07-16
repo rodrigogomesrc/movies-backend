@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:4.4
+    container_name: mongoDB
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./mongo:/data/db
+    environment:
+      TZ: America/Fortaleza
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: gd8sfdfg6s8fgs8gsd
+      MONGO_INITDB_DATABASE: movies
+    command: [--auth]
+    restart: always
+
+  orion:
+    depends_on:
+      - mongo
+    image: fiware/orion:3.1.0
+    container_name: orion
+    command: -dbhost mongoDB:27017 -dbuser mongo -dbpwd gd8sfdfg6s8fgs8gsd
+    environment:
+      TZ: America/Fortaleza
+    ports:
+      - "1027:1026"
+    restart: always
