@@ -11,6 +11,12 @@ public class ServicesConfig {
     @Value("${application.data.mode}")
     private String dataMode;
 
+    @Value("${application.fiware.orion.host}")
+    private String orionHost;
+
+    @Value("${application.fiware.orion.port}")
+    private String orionPort;
+
     @EventListener(ApplicationReadyEvent.class)
     public void configOrion(){
         System.out.println("ServicesConfig");
