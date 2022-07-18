@@ -34,6 +34,7 @@ public class ServicesConfig {
             attributes.add("title");
             attributes.add("genre");
             attributes.add("exibitionDate");
+            attributes.add("channel");
             attributes.add("type");
             attributes.add("id");
 
