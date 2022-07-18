@@ -40,10 +40,8 @@ public class ServicesConfig {
             try {
                 FiwareService.subscribeOrion("Receive movies updates", "Movie",
                         attributes, notificationEndpoint, orionHost, orionPort);
-
-                //MovieEntity movie = new MovieEntity("fsdfsdfs", "The Matrix", "Action", "1999-01-01", "Netflix");
-                //FiwareService.createEntity(movie, orionHost, orionPort);
                 System.out.println("Subscription done!");
+
             } catch (IOException e) {
                 System.out.println("Error creating subscription");
                 e.printStackTrace();

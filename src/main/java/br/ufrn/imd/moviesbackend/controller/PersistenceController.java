@@ -2,6 +2,7 @@ package br.ufrn.imd.moviesbackend.controller;
 
 import br.ufrn.imd.moviesbackend.model.MovieDTO;
 import br.ufrn.imd.moviesbackend.service.PersistenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +15,8 @@ import java.util.List;
 @RestController
 public class PersistenceController {
 
-    private final PersistenceService persistenceService;
-
-    public PersistenceController() {
-        this.persistenceService = new PersistenceService();
-    }
+    @Autowired
+    private PersistenceService persistenceService;
 
     //writeMovie post request
     @PostMapping("/addMovie")
