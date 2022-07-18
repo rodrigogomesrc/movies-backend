@@ -1,5 +1,6 @@
 package br.ufrn.imd.moviesbackend.service;
 
+import br.ufrn.imd.moviesbackend.model.orion.MovieEntity;
 import br.ufrn.imd.moviesbackend.model.orion.OrionSubscription;
 import br.ufrn.imd.moviesbackend.util.HttpRequests;
 import br.ufrn.imd.moviesbackend.util.RequestsConfigHelper;
@@ -17,6 +18,7 @@ public class FiwareService {
 
     public static String orionSubscriptionContext = "/v2/subscriptions/";
 
+    public static String orionEntityContext = "/v2/entities/";
     public static String fiware_service = "MOVIES";
     public static String fiware_servicepath = "/movies";
 
@@ -56,5 +58,19 @@ public class FiwareService {
             throw new IOException(response.getBody());
         }
         return subscriptionId;
+    }
+
+    public static void createEntity(MovieEntity entity, String orionHost, String orionPort) throws IOException {
+        String url = RequestsConfigHelper.createEndpoint(orionHost, orionPort, orionEntityContext);
+        ResponseEntity<String> response;
+        try {
+            response = HttpRequests.post(url, RequestsConfigHelper.toJson(entity), fiwareHeaders());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IOException(e.getMessage());
+        }
+        if(response.getStatusCode() != HttpStatus.CREATED){
+            throw new IOException(response.getBody());
+        }
     }
 }
