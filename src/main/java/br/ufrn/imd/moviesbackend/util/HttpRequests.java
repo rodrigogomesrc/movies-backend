@@ -13,14 +13,6 @@ public class HttpRequests {
         return httpRequest(url, HttpMethod.POST, data, requestHeaders);
     }
 
-    public static ResponseEntity<String> get(String url, Map<String, String> requestHeaders) {
-        return httpRequest(url, HttpMethod.GET, null, requestHeaders);
-    }
-
-    public static ResponseEntity<String> delete(String url, Map<String, String> requestHeaders) {
-        return httpRequest(url, HttpMethod.DELETE, null, requestHeaders);
-    }
-
     private static ResponseEntity<String> httpRequest(
             String url, HttpMethod method, String data, Map<String, String> requestHeaders) {
         RestTemplate restTemplate = new RestTemplate();
